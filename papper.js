@@ -1,29 +1,27 @@
 class Papper {
-  constructor(x, y) {
+  constructor(x, y, r) {
     var options = {
-      density: 1.5,
-      friction: 1.0,
-      restitution: 0.5,
+      isStatic: false,
+      restitution: 0.3,
+      friction: 0.5,
+      density: 1.2,
     };
-    this.body = Bodies.rectangle(x, y, 50, 50, options);
-    this.width = 50;
-    this.height = 50;
+    this.x = x;
+    this.y = y;
+    this.r = r;
+    this.body = Bodies.circle(this.x, this.y, this.r / 2, options);
     World.add(world, this.body);
   }
+
   display() {
-    // var pos = this.body.position;
-    // pos.x = mouseX;
-    // pos.y = mouseY;
-    // var angle = this.body.angle;
+    var papperpos = this.body.position;
 
     push();
-    // translate(pos.x, pos.y);
-    // rotate(angle);
-    strokeWeight(3);
-    stroke("blue");
-    fill("darkpink");
+    translate(papperpos.x, papperpos.y);
     rectMode(CENTER);
-    rect(0, 0, this.width, this.height);
+    // strockeWeight(3);
+    fill(255, 0, 255);
+    ellipse(0, 0, this.r, this.r);
     pop();
   }
 }
